@@ -5,6 +5,7 @@ import {
   CwdStepMachine,
 } from "@saflib/workflows";
 import {
+  AddDrizzleQueryWorkflowDefinition,
   DrizzleInitWorkflowDefinition,
   UpdateSchemaWorkflowDefinition,
 } from "@saflib/drizzle/workflows";
@@ -14,6 +15,7 @@ import {
 import {
   OpenapiInitWorkflowDefinition,
   AddRouteWorkflowDefinition,
+  AddSchemaWorkflowDefinition,
 } from "@saflib/openapi/workflows";
 import path from "node:path";
 import { InitServiceWorkflowDefinition } from "@saflib/service/workflows";
@@ -63,14 +65,23 @@ export const PlaygroundDemoWorkflowDefinition =
       step(makeWorkflowMachine(UpdateSchemaWorkflowDefinition), () => ({
         path: "./schemas/user.ts",
       })),
+      step(makeWorkflowMachine(AddDrizzleQueryWorkflowDefinition), () => ({
+        path: "./queries/users/list.ts",
+        promptMessage: "Add the query for a list of users.",
+      })),
 
       // // Run example workflow: add a route
-      // step(CwdStepMachine, ({ context }) => ({
-      //   path: path.join(context.demoDir, "example-spec"),
-      // })),
-      // step(makeWorkflowMachine(AddRouteWorkflowDefinition), () => ({
-      //   path: "./routes/users/list.yaml",
-      // })),
+      step(CwdStepMachine, () => ({
+        path: path.join("./example/example-spec"),
+      })),
+      step(makeWorkflowMachine(AddSchemaWorkflowDefinition), () => ({
+        name: "user",
+        promptMessage: "Add the API schema for the user resource that reflects the database schema.",
+      })),
+      step(makeWorkflowMachine(AddRouteWorkflowDefinition), () => ({
+        path: "./routes/users/list.yaml",
+        promptMessage: "Add the spec for a list route that uses the user schema.",
+      })),
     ],
   });
 
