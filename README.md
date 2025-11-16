@@ -77,3 +77,13 @@ npm exec saf-workflow kickoff ./workflows/demo.ts -- -v git -r cursor  # CLI-Dri
 ```
 
 You may want to create a branch first to isolate the commits.
+
+## Run Individual Workflows
+
+Any of the above methods can also be used to run routine workflows, rather than the entire demo. The first few steps would be:
+
+```bash
+npm exec saf-workflow kickoff service/init example-service ./example
+cd ./example/example-db
+npm exec saf-workflow kickoff drizzle/update-schema ./schemas/user.ts
+```
