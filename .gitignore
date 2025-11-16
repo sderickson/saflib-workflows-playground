@@ -1,6 +1,5 @@
 node_modules
 coverage
-saf-workflow-status.json
 
 # Editor directories and files
 .vscode/*
@@ -21,3 +20,6 @@ saf-workflow-status.json
 **/playwright-report
 **/e2e/**/*.jpeg
 **/e2e/**/*.png
+
+# SAF
+saf-workflow-*
