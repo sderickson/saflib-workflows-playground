@@ -31,3 +31,13 @@ npm exec saf-workflow run-scripts ./workflows/demo.ts
 ```
 
 This will copy a great many files from templates, and run some commands such as `npm install`, `npm run typecheck`, and `npm run test`.
+
+### Manually
+
+If you want to act in the part of the agent:
+
+```
+npm exec saf-workflow kickoff ./workflows/demo.ts
+```
+
+It'll initialize the service, then prompt you to do the implementation parts.
