@@ -66,7 +66,7 @@ export const PlaygroundDemoWorkflowDefinition =
         path: "./schemas/user.ts",
       })),
       step(makeWorkflowMachine(AddDrizzleQueryWorkflowDefinition), () => ({
-        path: "./queries/users/list.ts",
+        path: "./queries/user/list.ts",
         promptMessage: "Add the query for a list of users.",
       })),
 
