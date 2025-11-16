@@ -87,3 +87,5 @@ npm exec saf-workflow kickoff service/init example-service ./example
 cd ./example/example-db
 npm exec saf-workflow kickoff drizzle/update-schema ./schemas/user.ts
 ```
+
+Explore the other `saf-workflow` sub-commands to see what other workflows are available, what they do, and what arguments they take.
