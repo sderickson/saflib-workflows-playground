@@ -18,7 +18,7 @@ There is [one demo workflow](./workflows/demo.ts) that you can run to see the po
 
 To see what the workflow will do without running any of it:
 
-```
+```bash
 npm exec saf-workflow checklist ./workflows/demo.ts
 ```
 
@@ -36,8 +36,44 @@ This will copy a great many files from templates, and run some commands such as 
 
 If you want to act in the part of the agent:
 
-```
+```bash
 npm exec saf-workflow kickoff ./workflows/demo.ts
 ```
 
 It'll initialize the service, then prompt you to do the implementation parts.
+
+### Agent-Driven
+
+If you'd like the agent to do the implementation, prompt the agent:
+
+```
+Please run the following command:
+npm exec saf-workflow kickoff ./workflows/demo.ts
+
+Follow its instructions until the workflow is entirely finished.
+```
+
+Odds are good the agent will do so. If it stops partway through, nudge it to continue. You can check the status of the workflow with:
+
+```
+npm exec saf-workflow status ./workflows/demo.ts
+```
+
+### CLI-Driven
+
+To have the workflow tool invoke the agent, you will need [Cursor CLI](https://cursor.com/cli) installed. Set that up first, including logging in, then run:
+
+```bash
+npm exec saf-workflow kickoff ./workflows/demo.ts -- -r cursor
+```
+
+### With Version Control
+
+For either Agent-Driven or CLI-Driven, you can have the workflow tool automatically commit after each workflow.
+
+```bash
+npm exec saf-workflow kickoff ./workflows/demo.ts -- -v git            # Agent-Driven
+npm exec saf-workflow kickoff ./workflows/demo.ts -- -v git -r cursor  # CLI-Driven
+```
+
+You may want to create a branch first to isolate the commits.
